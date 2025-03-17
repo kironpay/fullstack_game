@@ -24,7 +24,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:3000/productos'),
+        Uri.parse('https://fullstack-game-github.onrender.com/productos'),
       );
 
       if (response.statusCode == 200) {
@@ -64,7 +64,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
     if (confirmDelete) {
       final response = await http.delete(
-        Uri.parse('http://10.0.2.2:3000/productos/$id'),
+        Uri.parse('https://fullstack-game-github.onrender.com/productos/$id'),
       );
 
       if (response.statusCode == 200) {

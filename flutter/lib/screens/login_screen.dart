@@ -21,19 +21,24 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMessage = '';
     });
 
-    final String apiUrl = "http://10.0.2.2:3000/auth/login"; // URL de la API
+    final String apiUrl =
+        "https://fullstack-game-github.onrender.com/auth/login"; // URL de la API
 
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
-          "correo": correoController.text.trim(), // 🛠 Corregido de "email" a "correo"
+          "correo":
+              correoController.text
+                  .trim(), // 🛠 Corregido de "email" a "correo"
           "password": passwordController.text.trim(),
         }),
       );
 
-      print("Enviando datos: ${correoController.text}, ${passwordController.text}"); // Debug
+      print(
+        "Enviando datos: ${correoController.text}, ${passwordController.text}",
+      ); // Debug
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -43,9 +48,9 @@ class _LoginScreenState extends State<LoginScreen> {
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('token', token);
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Inicio de sesión exitoso")),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text("Inicio de sesión exitoso")));
 
           // Redirigir a la pantalla de productos
           Navigator.pushReplacement(
@@ -95,9 +100,9 @@ class _LoginScreenState extends State<LoginScreen> {
             _isLoading
                 ? CircularProgressIndicator()
                 : ElevatedButton(
-              onPressed: login,
-              child: Text("Iniciar Sesión"),
-            ),
+                  onPressed: login,
+                  child: Text("Iniciar Sesión"),
+                ),
           ],
         ),
       ),

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = "http://localhost:3000";
+  static const String baseUrl = "https://fullstack-game-github.onrender.com";
 
   // Obtener todos los usuarios
   Future<List<dynamic>> getUsuarios() async {
